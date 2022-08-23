@@ -39,7 +39,5 @@ class CryptoClientTest {
 
         when(restTemplate.getForObject(uri, SimpleRateDto.class)).thenReturn(simpleRateDto);
 
-
-
     }
 }

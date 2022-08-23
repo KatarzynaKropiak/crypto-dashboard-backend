@@ -1,9 +1,12 @@
 package com.crud.crypto.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import javax.persistence.Column;
 
+@AllArgsConstructor
+@Getter
 public class WalletDto {
 
     @JsonProperty("userId")
@@ -14,4 +17,6 @@ public class WalletDto {
 
     @JsonProperty("email")
     private String email;
+
+
 }

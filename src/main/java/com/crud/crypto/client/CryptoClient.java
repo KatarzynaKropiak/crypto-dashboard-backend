@@ -37,10 +37,8 @@ public class CryptoClient {
 
         SimpleRateDto coingeckoResponse = restTemplate.getForObject(url, SimpleRateDto.class);
 
-
        return coingeckoResponse;
     }
-
 
     public List<CoinDto> getCoinsList() {
         URI url = UriComponentsBuilder.fromHttpUrl(
