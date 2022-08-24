@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("v1/crypto")
@@ -29,10 +30,37 @@ public class CoingeckoController {
     public ResponseEntity <SimpleRateDto> getSimpleRate(@RequestParam String coinId, @RequestParam String currency) {
             return ResponseEntity.ok(cryptoClient.getSimpleRate(coinId, currency));
     }
+
+    @GetMapping("allRates")
+    public ResponseEntity <List<SimpleRateDto>> getAllRates(@RequestParam String currency) {
+        List<Coin> coins = coinDbService.getAllCoins();
+        List<String> coinsIds = coins.stream()
+                .map(coin -> coin.getId())
+                .collect(Collectors.toList());
+        List<SimpleRateDto> response = coinsIds.stream()
+                .map(coinId -> cryptoClient.getSimpleRate(coinId, currency))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(response);    }
+
+    @GetMapping("allCurrencies")
+    public ResponseEntity <List<SimpleRateDto>> getAllCurrencies(@RequestParam String coinId) {
+        List<Currency> currencies = currencyDbService.getAllCurrencies();
+        List<String> curenciesIds = currencies.stream()
+                .map(currency -> currency.getId())
+                .collect(Collectors.toList());
+        List<SimpleRateDto> response = curenciesIds.stream()
+                .map(currenciesId -> cryptoClient.getSimpleRate(coinId, currenciesId))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(response);    }
+
+
     @GetMapping("coinList")
     public ResponseEntity <List<CoinDto>> getCoinsList() {
         return ResponseEntity.ok(cryptoClient.getCoinsList());
     }
+
 
     @GetMapping("coins")
     public ResponseEntity<List<CoinDto>> getCoins() {

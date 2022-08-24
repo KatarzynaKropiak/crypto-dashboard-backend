@@ -26,7 +26,7 @@ public class SimpleRateDto {
         System.out.println("coinId: " + this.coinId);
         this.currency = (String) ((Map) details.get(this.coinId)).keySet().toArray()[0];
         System.out.println("currency: " + this.currency);
-        this.rate = BigDecimal.valueOf((Double) ((Map) details.get(this.coinId)).values().toArray()[0]);
+        this.rate = new BigDecimal(((Map) details.get(this.coinId)).values().toArray()[0].toString());
         details = null;
     }
 

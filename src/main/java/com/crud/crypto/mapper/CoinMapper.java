@@ -12,16 +12,17 @@ public class CoinMapper {
     public CoinDto mapToCoinDto(final Coin coin) {
         return new CoinDto(
                 coin.getId(),
-                coin.getSymbol(),
-                coin.getName()
+                coin.getName(),
+                coin.getSymbol()
+
         );
     }
 
     public Coin mapToCoin(final CoinDto coinDto) {
         return new Coin(
                 coinDto.getId(),
-                coinDto.getSymbol(),
-                coinDto.getName()
+                coinDto.getName(),
+                coinDto.getSymbol()
         );
     }
 

@@ -6,12 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface CoinRepository extends CrudRepository<Coin, Long>
+public interface CoinRepository
+extends CrudRepository<Coin, Long>
 
-    {
-        @Override
-        List<Coin> findAll();
-
+        {
+            @Override
+            List<Coin> findAll();
 //        @Override
 //        Coin save(Coin coin);
 //

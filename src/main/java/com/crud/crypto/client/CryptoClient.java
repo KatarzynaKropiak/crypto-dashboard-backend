@@ -1,5 +1,6 @@
 package com.crud.crypto.client;
 
+import com.crud.crypto.domain.Coin;
 import com.crud.crypto.domain.CoinDto;
 import com.crud.crypto.domain.SimpleRateDto;
 import lombok.Getter;
@@ -10,10 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -40,6 +39,30 @@ public class CryptoClient {
        return coingeckoResponse;
     }
 
+
+
+//    public List<SimpleRateDto> getAllRates(String currency, List<String> coinsIds) {
+//
+//        List<Coin> coins = new ArrayList<>();
+//        coinsIds = coins.stream()
+//                .map(coin -> coin.getId())
+//                .collect(Collectors.toList());
+//
+//        URI url = UriComponentsBuilder.fromHttpUrl(
+//                        coingeckoApiEndpoint + "/simple/price")
+//                .queryParam("ids", coinsIds)
+//                .queryParam( "vs_currencies", currency)
+//                .build()
+//                .encode()
+//                .toUri();
+//
+//        SimpleRateDto coingeckoResponse = restTemplate.getForObject(url, SimpleRateDto.class);
+//
+//        return Optional.ofNullable(coingeckoResponse)
+//                .map(Arrays::asList)
+//                .orElse(Collections.emptyList());
+//    }
+
     public List<CoinDto> getCoinsList() {
         URI url = UriComponentsBuilder.fromHttpUrl(
                 coingeckoApiEndpoint + "/coins/list")
@@ -47,9 +70,9 @@ public class CryptoClient {
                 .encode()
                 .toUri();
 
-        CoinDto[] boardsResponse = restTemplate.getForObject(url, CoinDto[].class);
+        CoinDto[] coingeckoResponse = restTemplate.getForObject(url, CoinDto[].class);
 
-        return Optional.ofNullable(boardsResponse)
+        return Optional.ofNullable(coingeckoResponse)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
     }
