@@ -15,8 +15,8 @@ public class AssetDto {
     @JsonProperty("name")
     private String name;
 
-//    @JsonProperty("walletId")
-//    private Long walletID;
+    @JsonProperty("walletId")
+    private Long walletID;
 
     @JsonProperty("coinId")
     private String coinId;
@@ -31,7 +31,12 @@ public class AssetDto {
     private BigDecimal currencyValue;
 
     public AssetDto(Long id, String name, String coinId, BigDecimal coinValue, String currencyId, BigDecimal currencyValue) {
+        this.id = id;
+        this.name = name;
+        this.coinId = coinId;
+        this.coinValue = coinValue;
+        this.currencyId = currencyId;
+        this.currencyValue = currencyValue;
     }
-
 
 }

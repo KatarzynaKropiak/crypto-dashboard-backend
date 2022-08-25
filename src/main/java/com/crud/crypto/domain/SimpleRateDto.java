@@ -17,6 +17,13 @@ public class SimpleRateDto {
     private String coinId;
     private String currency;
     private BigDecimal rate;
+
+    public SimpleRateDto(String coinId, String currency, BigDecimal rate) {
+        this.coinId = coinId;
+        this.currency = currency;
+        this.rate = rate;
+    }
+
     private Map<String, Object> details = new LinkedHashMap<>();
 
     @JsonAnySetter

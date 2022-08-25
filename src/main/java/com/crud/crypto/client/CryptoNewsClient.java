@@ -30,6 +30,8 @@ public class CryptoNewsClient {
 
     @Value("${cryptonewstoday.api.endpoint.prod}")
         private String cryptoNewsApiEndpoint;
+    @Value("${cryptonewstoday.api.key}")
+        private String rapidapiKey;
 
 
     public List<NewsDto> getNews(String coinId) {
@@ -37,26 +39,11 @@ public class CryptoNewsClient {
                         cryptoNewsApiEndpoint + coinId)
                 .queryParam("start_date", LocalDate.now().minusDays(3L))
                 .queryParam("end_date", LocalDate.now())
-                .queryParam("rapidapi-key", "02494de011msh2e37f20e09eed1ap1ba510jsn48b6c7643376")
+                .queryParam("rapidapi-key", rapidapiKey)
                 .build()
                 .encode()
                 .toUri();
 
-
-//        Map<String, String> headers = new HashMap<>();
-//        headers.put("X-RapidAPI-Key", "02494de011msh2e37f20e09eed1ap1ba510jsn48b6c7643376");
-//
-//        RequestEntity requestEntity = new RequestEntity(headers, HttpMethod.GET, url);
-//
-//
-//        ResponseEntity<NewsDto> newsTodayResponse = restTemplate.exchange(url, HttpMethod.GET, requestEntity, NewsDto.class);
-//        System.out.println(requestEntity);
-//
-//
-//        return Optional.ofNullable(newsTodayResponse.getBody())
-//                    .map(Arrays::asList)
-//                    .orElse(Collections.emptyList());
-//        }
         NewsDto newsTodayResponse = restTemplate.getForObject(url, NewsDto.class);
         System.out.println(newsTodayResponse);
 
@@ -70,7 +57,7 @@ public class CryptoNewsClient {
                         cryptoNewsApiEndpoint)
                 .queryParam("start_date", LocalDate.now().minusDays(3L))
                 .queryParam("end_date", LocalDate.now())
-                .queryParam("rapidapi-key", "02494de011msh2e37f20e09eed1ap1ba510jsn48b6c7643376")
+                .queryParam("rapidapi-key",rapidapiKey)
                 .build()
                 .encode()
                 .toUri();

@@ -27,6 +27,7 @@ import java.util.List;
         @Column(name = "userName")
         private String userName;
 
+        @NotNull
         @Column(name = "email")
         private String email;
 

@@ -22,7 +22,7 @@ public class CryptoNewsController {
         return ResponseEntity.ok(cryptoNewsClient.getNews(coinId));
     }
 
-    @GetMapping("allnews")
+    @GetMapping("news")
     public ResponseEntity<List<NewsDto>> getNewsList() {
         return ResponseEntity.ok(cryptoNewsClient.getAllNews());
     }

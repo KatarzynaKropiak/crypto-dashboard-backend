@@ -12,7 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -39,29 +38,6 @@ public class CryptoClient {
        return coingeckoResponse;
     }
 
-
-
-//    public List<SimpleRateDto> getAllRates(String currency, List<String> coinsIds) {
-//
-//        List<Coin> coins = new ArrayList<>();
-//        coinsIds = coins.stream()
-//                .map(coin -> coin.getId())
-//                .collect(Collectors.toList());
-//
-//        URI url = UriComponentsBuilder.fromHttpUrl(
-//                        coingeckoApiEndpoint + "/simple/price")
-//                .queryParam("ids", coinsIds)
-//                .queryParam( "vs_currencies", currency)
-//                .build()
-//                .encode()
-//                .toUri();
-//
-//        SimpleRateDto coingeckoResponse = restTemplate.getForObject(url, SimpleRateDto.class);
-//
-//        return Optional.ofNullable(coingeckoResponse)
-//                .map(Arrays::asList)
-//                .orElse(Collections.emptyList());
-//    }
 
     public List<CoinDto> getCoinsList() {
         URI url = UriComponentsBuilder.fromHttpUrl(

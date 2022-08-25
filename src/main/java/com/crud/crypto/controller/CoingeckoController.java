@@ -26,12 +26,12 @@ public class CoingeckoController {
     private final CurrencyMapper currencyMapper;
     private final CurrencyDbService currencyDbService;
 
-    @GetMapping("simpleRate")
+    @GetMapping("rates")
     public ResponseEntity <SimpleRateDto> getSimpleRate(@RequestParam String coinId, @RequestParam String currency) {
             return ResponseEntity.ok(cryptoClient.getSimpleRate(coinId, currency));
     }
 
-    @GetMapping("allRates")
+    @GetMapping("rates")
     public ResponseEntity <List<SimpleRateDto>> getAllRates(@RequestParam String currency) {
         List<Coin> coins = coinDbService.getAllCoins();
         List<String> coinsIds = coins.stream()
@@ -43,7 +43,7 @@ public class CoingeckoController {
 
         return ResponseEntity.ok(response);    }
 
-    @GetMapping("allCurrencies")
+    @GetMapping("rates")
     public ResponseEntity <List<SimpleRateDto>> getAllCurrencies(@RequestParam String coinId) {
         List<Currency> currencies = currencyDbService.getAllCurrencies();
         List<String> curenciesIds = currencies.stream()
@@ -56,7 +56,7 @@ public class CoingeckoController {
         return ResponseEntity.ok(response);    }
 
 
-    @GetMapping("coinList")
+    @GetMapping("coins")
     public ResponseEntity <List<CoinDto>> getCoinsList() {
         return ResponseEntity.ok(cryptoClient.getCoinsList());
     }
