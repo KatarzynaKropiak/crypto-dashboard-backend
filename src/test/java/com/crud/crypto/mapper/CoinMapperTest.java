@@ -15,7 +15,7 @@ class CoinMapperTest {
 
 
     @Test
-    void mapToCoinDto() {
+    void mapToCoin() {
         //Given
         CoinDto coinDto = new CoinDto("id", "name", "symbol");
         //When
@@ -27,7 +27,7 @@ class CoinMapperTest {
     }
 
     @Test
-    void mapToCoin() {
+    void mapToCoinDto() {
         //Given
         Coin coin = new Coin("id", "name", "symbol");
         //When
@@ -50,5 +50,18 @@ class CoinMapperTest {
         assertEquals(coinList.get(0).getId(), coinDtos.get(0).getId());
         assertEquals(coinList.get(0).getName(), coinDtos.get(0).getName());
         assertEquals(coinList.get(0).getSymbol(), coinDtos.get(0).getSymbol());
+    }
+    @Test
+    void mapToCoinList() {
+        //Given
+        List<CoinDto> coinDtoList = new ArrayList<>();
+        CoinDto coinDto = new CoinDto("id", "name", "symbol");
+        coinDtoList.add(coinDto);
+        //When
+        List<Coin> coins = coinMapper.mapToCoinList(coinDtoList);
+        //Then
+        assertEquals(coinDtoList.get(0).getId(), coinDtoList.get(0).getId());
+        assertEquals(coinDtoList.get(0).getName(), coinDtoList.get(0).getName());
+        assertEquals(coinDtoList.get(0).getSymbol(), coinDtoList.get(0).getSymbol());
     }
 }

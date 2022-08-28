@@ -2,21 +2,24 @@ package com.crud.crypto.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Data
+
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Getter
 public class AssetDto {
 
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("name")
-    private String name;
-
     @JsonProperty("walletId")
-    private Long walletID;
+    private Long walletId;
 
     @JsonProperty("coinId")
     private String coinId;
@@ -30,9 +33,8 @@ public class AssetDto {
     @JsonProperty("currencyValue")
     private BigDecimal currencyValue;
 
-    public AssetDto(Long id, String name, String coinId, BigDecimal coinValue, String currencyId, BigDecimal currencyValue) {
-        this.id = id;
-        this.name = name;
+    public AssetDto(Long walletId, String coinId, BigDecimal coinValue, String currencyId, BigDecimal currencyValue) {
+        this.walletId = walletId;
         this.coinId = coinId;
         this.coinValue = coinValue;
         this.currencyId = currencyId;

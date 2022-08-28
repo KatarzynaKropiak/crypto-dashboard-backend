@@ -14,7 +14,6 @@ public class CoinMapper {
                 coin.getId(),
                 coin.getName(),
                 coin.getSymbol()
-
         );
     }
 
@@ -29,6 +28,11 @@ public class CoinMapper {
     public List<CoinDto> mapToCoinDtoList(final List<Coin> coinList) {
         return coinList.stream()
                 .map(this::mapToCoinDto)
+                .collect(Collectors.toList());
+    }
+    public List<Coin> mapToCoinList(final List<CoinDto> coinDtoList) {
+        return coinDtoList.stream()
+                .map(this::mapToCoin)
                 .collect(Collectors.toList());
     }
 }

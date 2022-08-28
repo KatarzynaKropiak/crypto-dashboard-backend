@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
     @Entity(name = "wallets")
@@ -21,6 +21,7 @@ import java.util.List;
         @GeneratedValue(strategy = GenerationType.SEQUENCE)
         @Id
         @NotNull
+        @Setter
         @Column(name = "walletId")
         private Long walletId;
 
@@ -42,11 +43,15 @@ import java.util.List;
         this.email = email;
     }
 
-    public void setId(Long walletId) {
-        this.walletId = walletId;
-    }
+        public Wallet(Long walletID) {
+            this.walletId = walletID;
+        }
 
-    public Long getId() {
-        return walletId;
-    }
+//    public void setId(Long walletId) {
+//        this.walletId = walletId;
+//    }
+//
+//    public Long getId() {
+//        return walletId;
+//    }
 }

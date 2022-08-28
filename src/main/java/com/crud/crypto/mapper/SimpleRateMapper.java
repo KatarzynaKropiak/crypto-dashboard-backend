@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CryptoMapper {
+public class SimpleRateMapper {
 
     public SimpleRateDto mapToSimpleRateDto(final SimpleRate simpleRate) {
         return new SimpleRateDto(
@@ -24,15 +24,4 @@ public class CryptoMapper {
         );
     }
 
-    public List<SimpleRateDto> mapToSimpleRateDtoList(final List<SimpleRate> simpleRateList) {
-        return simpleRateList.stream()
-                .map(this::mapToSimpleRateDto)
-                .collect(Collectors.toList());
-    }
-
-    public List<SimpleRate> mapToSimpleRateList(final List<SimpleRateDto> simpleRateDtoList) {
-        return simpleRateDtoList.stream()
-                .map(this::mapToSimpleRate)
-                .collect(Collectors.toList());
-    }
 }

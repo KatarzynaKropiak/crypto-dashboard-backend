@@ -1,6 +1,7 @@
 package com.crud.crypto.service;
 
 import com.crud.crypto.domain.Mail;
+import com.crud.crypto.repository.EmailRepository;
 import com.crud.crypto.repository.service.SimpleEmailService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +21,8 @@ class SimpleEmailServiceTest {
 
     @Mock
     private JavaMailSender javaMailSender;
+    @Mock
+    private EmailRepository emailRepository;
 
     @Test
     public void shouldSendEmail() {

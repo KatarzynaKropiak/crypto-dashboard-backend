@@ -1,11 +1,10 @@
 package com.crud.crypto.client;
 
-import com.crud.crypto.domain.Coin;
+import com.crud.crypto.config.CryptoConfig;
 import com.crud.crypto.domain.CoinDto;
 import com.crud.crypto.domain.SimpleRateDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,14 +18,13 @@ import java.util.*;
 public class CryptoClient {
 
     private final RestTemplate restTemplate;
+    private final CryptoConfig cryptoConfig;
 
 
-    @Value("${coingecko.api.endpoint.prod}")
-    private String coingeckoApiEndpoint;
 
     public SimpleRateDto getSimpleRate(String coinId, String currency) {
         URI url = UriComponentsBuilder.fromHttpUrl(
-                coingeckoApiEndpoint + "/simple/price")
+                cryptoConfig.getCoingeckoApiEndpoint() + "/simple/price")
                 .queryParam("ids", coinId)
                 .queryParam( "vs_currencies", currency)
                 .build()
@@ -41,7 +39,7 @@ public class CryptoClient {
 
     public List<CoinDto> getCoinsList() {
         URI url = UriComponentsBuilder.fromHttpUrl(
-                coingeckoApiEndpoint + "/coins/list")
+                cryptoConfig.getCoingeckoApiEndpoint() + "/coins/list")
                 .build()
                 .encode()
                 .toUri();

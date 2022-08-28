@@ -1,5 +1,6 @@
 package com.crud.crypto.client;
 
+import com.crud.crypto.config.CryptoConfig;
 import com.crud.crypto.domain.CoinDto;
 import com.crud.crypto.domain.NewsDto;
 import lombok.Getter;
@@ -23,23 +24,19 @@ import java.util.*;
 
 @Component
 @RequiredArgsConstructor
-@Getter
 public class CryptoNewsClient {
 
     private final RestTemplate restTemplate;
+    private final CryptoConfig cryptoConfig;
 
-    @Value("${cryptonewstoday.api.endpoint.prod}")
-        private String cryptoNewsApiEndpoint;
-    @Value("${cryptonewstoday.api.key}")
-        private String rapidapiKey;
 
 
     public List<NewsDto> getNews(String coinId) {
         URI url = UriComponentsBuilder.fromHttpUrl(
-                        cryptoNewsApiEndpoint + coinId)
+                        cryptoConfig.getCryptoNewsApiEndpoint() + coinId)
                 .queryParam("start_date", LocalDate.now().minusDays(3L))
                 .queryParam("end_date", LocalDate.now())
-                .queryParam("rapidapi-key", rapidapiKey)
+                .queryParam("rapidapi-key", cryptoConfig.getRapidapiKey())
                 .build()
                 .encode()
                 .toUri();
@@ -54,10 +51,10 @@ public class CryptoNewsClient {
 
         public List<NewsDto> getAllNews() {
             URI url = UriComponentsBuilder.fromHttpUrl(
-                        cryptoNewsApiEndpoint)
+                            cryptoConfig.getCryptoNewsApiEndpoint())
                 .queryParam("start_date", LocalDate.now().minusDays(3L))
                 .queryParam("end_date", LocalDate.now())
-                .queryParam("rapidapi-key",rapidapiKey)
+                .queryParam("rapidapi-key",cryptoConfig.getRapidapiKey())
                 .build()
                 .encode()
                 .toUri();

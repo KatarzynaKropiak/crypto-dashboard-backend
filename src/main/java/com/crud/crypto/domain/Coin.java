@@ -8,7 +8,6 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -22,6 +21,7 @@ public class Coin {
     @Id
     @NotNull
     @Column(name = "id")
+
     private String id;
 
     @Column(name = "name")

@@ -28,4 +28,10 @@ public class CurrencyMapper {
                 .map(this::mapToCurrencyDto)
                 .collect(Collectors.toList());
     }
+
+    public List<Currency> mapToCurrencyList(final List<CurrencyDto> currencyDtoList) {
+        return currencyDtoList.stream()
+                .map(this::mapToCurrency)
+                .collect(Collectors.toList());
+    }
 }

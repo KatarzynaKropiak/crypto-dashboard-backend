@@ -5,26 +5,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Getter
 public class SimpleRateDto {
 
     private String coinId;
     private String currency;
     private BigDecimal rate;
 
+
+    private Map<String, Object> details = new LinkedHashMap<>();
+
     public SimpleRateDto(String coinId, String currency, BigDecimal rate) {
         this.coinId = coinId;
         this.currency = currency;
         this.rate = rate;
     }
-
-    private Map<String, Object> details = new LinkedHashMap<>();
 
     @JsonAnySetter
     void setDetail(String key, Object value) {

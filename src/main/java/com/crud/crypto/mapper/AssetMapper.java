@@ -2,21 +2,21 @@ package com.crud.crypto.mapper;
 
 import com.crud.crypto.domain.Asset;
 import com.crud.crypto.domain.AssetDto;
-import lombok.Data;
+import com.crud.crypto.domain.Wallet;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
 @Service
 public class AssetMapper {
 
     public AssetDto mapToAssetDto(final Asset asset) {
         return new AssetDto(
-                asset.getId(),
-                asset.getName(),
+                asset.getWallet().getWalletId(),
                 asset.getCoinId(),
                 asset.getCoinValue(),
                 asset.getCurrencyId(),
@@ -26,8 +26,7 @@ public class AssetMapper {
 
     public Asset mapToAsset(final AssetDto assetDto) {
         return new Asset(
-                assetDto.getId(),
-                assetDto.getName(),
+                new Wallet(assetDto.getWalletId()),
                 assetDto.getCoinId(),
                 assetDto.getCoinValue(),
                 assetDto.getCurrencyId(),
